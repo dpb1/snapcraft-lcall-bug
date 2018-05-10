@@ -1,0 +1,27 @@
+name: lcall-bug
+version: '0.0.1'
+summary: Demonstrate snapcraft python unicode bug.
+description: |
+  Demonstrate snapcraft python unicode bug.
+
+grade: stable
+confinement: strict
+base: core18
+
+apps:
+  lcall-bug:
+    # see: http://pad.lv/1576411
+    command: python3 -m lcall_bug
+  lcall-fixed:
+    # see: http://pad.lv/1576411
+    command: env LC_ALL=C.UTF-8 python3 -m lcall_bug
+
+parts:
+  lcall-bug:
+    plugin: python
+    python-version: python3
+    source: .
+  lcall-fixed:
+    plugin: python
+    python-version: python3
+    source: .
